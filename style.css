@@ -1,0 +1,304 @@
+:root {
+    --bg-color: #fff9fb;
+    --accent-1: #ffccd5;
+    --accent-2: #ffb3c1;
+    --text-color: #5e548e;
+    --romantic-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden; /* Prevent scroll between pages */
+}
+
+/* BACKGROUND ANIMATIONS */
+.bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 10s infinite ease-in-out;
+}
+
+/* PAGES */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* BUTTONS */
+.main-btn {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--accent-1);
+    border: none;
+    border-radius: 50px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 30px;
+}
+
+.main-btn:hover {
+    transform: scale(1.1) rotate(2deg);
+    background-color: var(--accent-2);
+}
+
+.main-btn:active {
+    transform: scale(0.9);
+}
+
+/* PAGE 1 CONTENT */
+.breathing-text {
+    font-size: clamp(2rem, 8vw, 5rem);
+    animation: breathe 3s infinite ease-in-out;
+    margin-bottom: 20px;
+}
+
+/* PAGE 2 CALENDAR */
+#calendar-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calendar-number {
+    font-size: 10rem;
+    font-weight: bold;
+    transition: transform 0.3s ease-in;
+}
+
+#time-flies {
+    font-size: 2rem;
+    color: var(--accent-2);
+    margin-top: 10px;
+}
+
+.image-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.side-images {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left { left: 5%; }
+.right { right: 5%; }
+
+.img-frame {
+    width: 120px;
+    height: 120px;
+    border: 5px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* PAGE 3 MAIN */
+.dancing-text {
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    animation: dance 2s infinite ease-in-out;
+}
+
+.pretty-text {
+    font-family: 'Gaegu', cursive;
+    font-size: 1.8rem;
+    margin-top: 20px;
+}
+
+/* CORNER BUTTONS */
+.corner-btn {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+    padding: 0;
+}
+
+.corner-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.corner-btn:hover { transform: scale(1.2) rotate(10deg); }
+
+.top-left { top: 20px; left: 20px; }
+.top-right { top: 20px; right: 20px; }
+.bottom-left { bottom: 20px; left: 20px; }
+.bottom-right { bottom: 20px; right: 20px; }
+
+/* MODALS */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.modal.fullscreen .modal-content {
+    width: 95%;
+    max-width: 1000px;
+    height: 90vh;
+    max-height: 90vh;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.romantic-theme .modal-content {
+    background: var(--romantic-bg);
+    color: #fff;
+}
+
+.letter-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: left;
+    white-space: pre-wrap;
+    padding: 10px;
+}
+
+.romantic {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.4rem;
+}
+
+.cat-gif {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 20px;
+}
+
+.cake-display img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+/* ANIMATIONS */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes dance {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(-2deg); }
+    75% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.jump-1 { animation: jump 3s infinite ease-in-out; }
+.jump-2 { animation: jump 3.5s infinite ease-in-out; }
+.jump-3 { animation: jump 4s infinite ease-in-out; }
+
+.hidden { opacity: 0; transform: translateY(20px); transition: 1s; }
+.visible { opacity: 1; transform: translateY(0); }
+
+/* Confetti Styles */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+    .img-frame { width: 80px; height: 80px; }
+    .side-images { display: none; } /* Hide side images on small mobile to avoid clutter */
+}
